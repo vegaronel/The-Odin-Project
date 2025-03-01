@@ -13,7 +13,15 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  const choice = prompt("Enter your choice.");
+  const choices = ["rock", "paper", "scissor"];
+  let choice = prompt("Enter your choice.");
+  choice = choice.toLocaleLowerCase();
+
+  if (!choices.includes(choice)) {
+    console.log("Invalid choice. Please enter rock, paper or scissor.");
+    return getHumanChoice();
+  }
+
   return choice.toLocaleLowerCase();
 }
 
@@ -40,22 +48,26 @@ function playRound(computerChoice, humanChoice) {
   }
 }
 
-for (let i = 0; i < 5; i++) {
-  const computerChoice = getComputerChoice();
-  const humanChoice = getHumanChoice();
-  const result = playRound(computerChoice, humanChoice);
-  console.log(
-    result +
-      "\nScore: Human: " +
-      humanScore +
-      " Computer: " +
-      computerScore +
-      "\n   "
-  );
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    const computerChoice = getComputerChoice();
+    const humanChoice = getHumanChoice();
+    const result = playRound(computerChoice, humanChoice);
+    console.log(
+      result +
+        "\nScore: Human: " +
+        humanScore +
+        " Computer: " +
+        computerScore +
+        "\n   "
+    );
+  }
+
+  if (humanScore > computerScore) {
+    console.log("The winner is: Human");
+  } else {
+    console.log("The winner is: Computer");
+  }
 }
 
-if (humanScore > computerScore) {
-  console.log("The winner is: Human");
-} else {
-  console.log("The winner is: Computer");
-}
+playGame();
