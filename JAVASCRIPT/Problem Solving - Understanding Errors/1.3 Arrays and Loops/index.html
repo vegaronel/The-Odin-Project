@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays and Loops</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="demo"></div>
+    <input type="text" id="name" />
+    <button onclick="addNewName()">Add</button>
+    <script>
+      // Array string of names
+      const names = ["Ronel", "Biboy", "Totoy", "Jepou", "Berting"];
+
+      //  Print all the names
+      console.log(names);
+
+      //   Empty array
+      const cars = [];
+
+      //   Adding value into array
+      cars[0] = "Ronel";
+      //   Update value
+      cars[0] = "Biboy";
+      console.log(cars[0]);
+
+      const demo = document.getElementById("demo");
+      demo.innerHTML = names.toString();
+
+      function addNewName() {
+        const name = document.getElementById("name").value;
+        names.push(name);
+        demo.innerHTML = names;
+        document.getElementById("name").value = "";
+      }
+      //   Foreach
+      //   names.forEach((name) => {
+      //     console.log(name);
+      //   });
+
+      // find search
+      //   const findName = "Ronasel";
+
+      //   names.find((name) => {
+      //     if (name === findName) {
+      //       console.log("You found " + name);
+      //     } else {
+      //       console.log("There are no user name " + findName);
+      //     }
+      //   });
+    </script>
+  </body>
+</html>
