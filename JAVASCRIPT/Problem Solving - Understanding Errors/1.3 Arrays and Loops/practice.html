@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array and Loops</title>
+    <style>
+      #demo {
+        background-color: whitesmoke;
+      }
+      .sample {
+        padding: 20px;
+        background-color: bisque;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <div>
+      <label for="">Title</label>
+      <input type="text" id="title" />
+    </div>
+
+    <div>
+      <label for="">Task</label>
+      <input type="text" id="task" />
+    </div>
+
+    <button id="add">Add</button>
+
+    <script>
+      const view = document.getElementById("demo");
+      const title = document.getElementById("title");
+      const task = document.getElementById("task");
+      const addButton = document.getElementById("add");
+
+      const todo = [
+        {
+          title: "Sample",
+          task: "Wash the dishes",
+        },
+        {
+          title: "Sample",
+          task: "Wash the dishes",
+        },
+        {
+          title: "Sample",
+          task: "Wash the dishes",
+        },
+      ];
+
+      function showTodo(i) {
+        const newDiv = document.createElement("div");
+        const newTitle = document.createElement("h1");
+        const newTask = document.createElement("p");
+
+        newTask.textContent = todo[i].task;
+        newTitle.textContent = todo[i].title;
+
+        newDiv.append(newTitle, newTask);
+        newDiv.classList.add("sample");
+        demo.appendChild(newDiv);
+      }
+
+      for (let i = 0; i < todo.length; i++) {
+        showTodo(i);
+      }
+      function handleAdd() {
+        const title = document.getElementById("title").value;
+        const task = document.getElementById("task").value;
+        const demo = document.getElementById("demo");
+
+        todo.push({
+          title: title,
+          task: task,
+        });
+
+        const newDiv = document.createElement("div");
+        const newTitle = document.createElement("h1");
+        const newTask = document.createElement("p");
+
+        newTask.textContent = task;
+        newTitle.textContent = title;
+
+        newDiv.append(newTitle, newTask);
+        newDiv.classList.add("sample");
+        demo.appendChild(newDiv);
+
+        console.log(todo);
+      }
+
+      addButton.addEventListener("click", handleAdd);
+    </script>
+  </body>
+</html>
