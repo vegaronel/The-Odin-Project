@@ -35,20 +35,7 @@
       const task = document.getElementById("task");
       const addButton = document.getElementById("add");
 
-      const todo = [
-        {
-          title: "Sample",
-          task: "Wash the dishes",
-        },
-        {
-          title: "Sample",
-          task: "Wash the dishes",
-        },
-        {
-          title: "Sample",
-          task: "Wash the dishes",
-        },
-      ];
+      let todo = [];
 
       function showTodo(i) {
         const newDiv = document.createElement("div");
@@ -70,8 +57,10 @@
         const title = document.getElementById("title").value;
         const task = document.getElementById("task").value;
         const demo = document.getElementById("demo");
+        const createId = todo.length + 1;
 
         todo.push({
+          id: createId,
           title: title,
           task: task,
         });
@@ -79,11 +68,17 @@
         const newDiv = document.createElement("div");
         const newTitle = document.createElement("h1");
         const newTask = document.createElement("p");
+        const newButton = document.createElement("button");
 
-        newTask.textContent = task;
+        newButton.textContent = `Delete ${createId}`;
+        newTask.textContent = `id: ${createId}  Task ${task}`;
         newTitle.textContent = title;
 
-        newDiv.append(newTitle, newTask);
+        newButton.id = `${createId}`;
+        newButton.onclick = () => {
+          handleDelete(`${createId}`);
+        };
+        newDiv.append(newTitle, newTask, newButton);
         newDiv.classList.add("sample");
         demo.appendChild(newDiv);
 
@@ -91,6 +86,13 @@
       }
 
       addButton.addEventListener("click", handleAdd);
+
+      function handleDelete(id) {
+        const find = todo.find((item) => item.id == id);
+        const found = todo.filter((item) => item.id != id);
+        todo = found;
+        console.log(todo);
+      }
     </script>
   </body>
 </html>

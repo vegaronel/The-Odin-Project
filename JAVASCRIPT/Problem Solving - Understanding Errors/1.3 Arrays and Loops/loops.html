@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loops</title>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <input type="text" id="name" />
+    <button onclick="filterAnimal()">Filter Dog</button>
+    <p id="result"></p>
+    <script>
+      const demo = document.getElementById("demo");
+      const notification = document.getElementById("result");
+      let animals = ["dog", "cat", "fish", "bird"];
+
+      demo.textContent = animals;
+
+      function filterAnimal() {
+        const animalName = document.getElementById("name").value;
+
+        const result = animals.filter((item) => {
+          if (item === animalName) {
+            notification.textContent = `Successfully remove ${animalName}`;
+            return item !== animalName;
+          }
+          return item;
+        });
+
+        animals = result;
+        demo.textContent = animals;
+      }
+
+      //   Real time clock
+      function realtimeDate() {
+        const time = new Date().toLocaleTimeString();
+        let i = 0;
+
+        demo.innerHTML = time;
+
+        setInterval(loop, 1000);
+
+        function loop() {
+          const newTime = new Date().toLocaleTimeString();
+          demo.textContent = newTime;
+        }
+      }
+
+      //   for of vs for each
+      function loops() {
+        for (const animal of animals) {
+          if (animal.name === "fish") {
+            console.log("Fish found");
+            break;
+          }
+        }
+        animals.forEach((item) => {
+          console.log(item);
+        });
+      }
+
+      //   realtimeDate();
+      //   loops();
+    </script>
+  </body>
+</html>
