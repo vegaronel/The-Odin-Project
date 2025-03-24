@@ -4,8 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissor</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 100vh;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .button-container {
+        display: flex;
+        gap: 10px;
+      }
+      .button-container button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: blueviolet;
+      }
+      .result-card {
+        margin: 10px;
+      }
+      #result {
+        text-align: center;
+      }
+      button {
+        color: white;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
+    <div class="container">
+      <div class="result-card">
+        <h2 id="result"></h2>
+        <p>Current Score: <span id="score">Human : 0 Computer: 0</span></p>
+      </div>
+
+      <div class="button-container">
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissor</button>
+      </div>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>
