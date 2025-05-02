@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container" style="background-color: yellowgreen; padding: 20px">
+      <div id="description-box">
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" />
+        <button id="submit">Submit</button>
+      </div>
+    </div>
+    <script>
+      let user = {
+        name: "John",
+        surname: "Smith",
+      };
+
+      // user.name = "Pete";
+      // console.log(user.name); // Pete
+
+      // delete user.name;
+      // console.log(user.name); // undefined
+
+      // CHECK IF OBJECT IS EMPTY
+      function isEmpty(obj) {
+        for (let key in obj) {
+          return false;
+        }
+        return true;
+      }
+
+      // console.log(isEmpty(user));
+
+      // SUM ALL THE SALARIES
+
+      let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+      };
+      function addSalaries(salaries) {
+        let sum = 0;
+        for (let props in salaries) {
+          sum += salaries[props];
+        }
+        return sum;
+      }
+
+      // console.log(addSalaries(salaries));
+
+      // MULTIPLY NUMERIC PROPERTY
+      // before the call
+      let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu",
+      };
+
+      function multiplyNumeric(menu) {
+        for (let props in menu) {
+          if (typeof menu[props] === "number") {
+            menu[props] *= 2;
+          }
+        }
+      }
+      // console.log(menu);
+      // multiplyNumeric(menu);
+      // console.log(menu);
+
+      // multiply even numbers by 3
+
+      const arr = [1, 4, 5, 16, 19, 2, 5];
+
+      const people = [
+        { name: "Ronel", id: 0 },
+        { name: "Joaquin", id: 1 },
+        { name: "Macrin", id: 2 },
+        { name: "Rusell", id: 3 },
+        { name: "Rusell", id: 3 },
+        { name: "Rusell", id: 3 },
+        { name: "Edsel", id: 0 },
+      ];
+
+      const obj = {
+        name: "Ronel",
+        age: 23,
+      };
+
+      function tripleEvenNumbers(array) {
+        return array
+          .filter((item) => item % 2 === 0)
+          .map((item) => item * 3)
+          .reduce((total, currentNumber) => (total += currentNumber));
+      }
+      // add item in an array
+      arr.push(6);
+      // remove item
+      arr.pop();
+      // remove item in the first index
+      arr.shift();
+      // add item in the first index
+      arr.unshift(1);
+
+      // splice function
+      // replacing a value
+      // arr.splice(0, 1, "Hello", "World");
+      // // insert value without removing any element
+      // arr.splice(2, 0, "Biboy", "is back");
+
+      // arr.splice(-1, 0, "Insert 2nd to the last");
+
+      // arr.forEach((prop, index, arr) => {
+      //   console.log(`${prop} index at ${index} array at ${arr}`);
+      // });
+
+      const objey = {
+        0: "Hello",
+        length: 1,
+        [Symbol.isConcatSpreadable]: true,
+      };
+      const conca = arr.concat([1, 1, 2, 8, 0, 0], objey);
+
+      // // Find the index in an array, otherwise it will return -1
+      // console.log(people.indexOf("Ronel", "asd"));
+      // // Check a value inside an array
+      // console.log(people.includes("Ronel"));
+
+      // Searching for a single item in an array
+
+      // console.log(people.findIndex((item) => item.name === "Rusell"));
+
+      // console.log(people.findLastIndex((item) => item.name === "Rusell"));
+
+      // console.log(people.filter((item) => item.name === "Rusell"));
+
+      const main = document.getElementById("container");
+
+      people.map((item) => {
+        const newDiv = document.createElement("div");
+        newDiv.textContent = item.name;
+
+        main.append(newDiv);
+      });
+
+      // Sort function
+
+      // alert(
+      //   arr.sort(function (a, b) {
+      //     console.log(a + "-" + b + " " + (a - b));
+
+      //     return a - b;
+      //   })
+      // );
+
+      const description = document.getElementById("description");
+      const submitBtn = document.getElementById("submit");
+
+      submitBtn.addEventListener("click", submitDescription);
+
+      function submitDescription() {
+        const newDiv = document.createElement("div");
+
+        if (!description.value) {
+          return console.log("No input");
+        }
+
+        if (description.value.length >= 10) {
+          const newDiscription = description.value.slice(0, 10);
+          newDiv.textContent = newDiscription;
+          container.append(newDiv);
+        }
+      }
+
+      // Split Function
+      // let names = "Ronel, Biboy, Litch, Zephyr";
+      // for (name of names.split(",")) {
+      //   alert(`Hello ${name}`);
+      // }
+
+      // Check an array
+      // console.log("Check an array \n" + Array.isArray({}));
+
+      let army = {
+        minAge: 16,
+        maxAge: 30,
+        qualified(user) {
+          return user.age >= this.minAge && user.age <= this.maxAge;
+        },
+      };
+
+      let users = [
+        {
+          age: 15,
+        },
+        {
+          age: 20,
+        },
+        {
+          age: 24,
+        },
+        {
+          age: 29,
+        },
+      ];
+
+      let soldiers = users.filter((user) => army.qualified(user));
+
+      console.log(soldiers);
+    </script>
+  </body>
+</html>
