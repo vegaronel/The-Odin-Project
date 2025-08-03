@@ -40,34 +40,75 @@
                 <div class="form-control">
                   <label for="email">Email</label>
                   <input type="email" id="email" />
+                  <small class="error-message">Invalid email address.</small>
                 </div>
 
                 <div class="form-control">
                   <label for="phone_number">Phone Number</label>
-                  <input type="number" id="phone_number" />
+                  <input type="number" id="phone_number" minlength="11" maxlength="11" />
                 </div>
               </div>
 
               <div class="input-group">
                 <div class="form-control">
                   <label for="password">Password</label>
-                  <input type="password" id="password" />
+                  <input type="password" id="password" minlength="8" />
+                  <small id="password-error" class="error-message"></small>
                 </div>
 
                 <div class="form-control">
                   <label for="confirm_password">Confirm Password</label>
-                  <input type="password" id="confirm_password" />
+                  <input type="password" id="confirm_password" minlength="8"/>
                 </div>
               </div>
-            </form>
-
-            <div class="form-footer">
-              <button>Create Account</button>
+                <div class="form-footer">
+              <button type="button">Create Account</button>
               <p>Already have an account? <span>Login</span></p>
             </div>
           </div>
+            </form>
         </div>
       </div>
     </div>
+
+    <script>
+        const input = document.querySelectorAll(`input[type="password"]`);
+        const allInput = document.querySelectorAll("input");
+        const button = document.querySelector("button");
+        const errorMessage = document.getElementById("password-error");
+        
+
+
+
+        button.addEventListener("click", validateInputs)
+
+        function validateInputs() {
+
+            
+            allInput.forEach(item => {
+                if(item.value === ""){
+                    item.classList.add("red-outline");
+                    console.log("no input", item.type );
+                   errorMessage.textContent = "Please fill all the fields";
+                   errorMessage.style.display = "block"
+                }
+            })
+
+            if(input[0].value === "" || input[1].value === ""){
+                input[0].classList.add("red-outline");
+                input[1].classList.add("red-outline");
+                errorMessage.textContent = "Invalid Password"
+                errorMessage.style.display = "block"
+                
+            }
+            else if(input[0].value === input[1].value){
+            console.log("ok")
+        }else{
+               input[0].classList.add("red-outline");
+                input[1].classList.add("red-outline");
+            errorMessage.style.display = "block";
+        }
+        }
+    </script>
   </body>
 </html>
