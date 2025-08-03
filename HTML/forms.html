@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="https://httpbin.org/post" method="post">
+      <div>
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          placeholder="First Name"
+          id="first_name"
+          name="first_name"
+        />
+      </div>
+
+      <div>
+        <label for="birth_date">Birth Date</label>
+        <input type="date" id="birth_date" name="birth_date" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+
+      <div>
+        <label for="caption">Caption</label>
+        <textarea name="caption" id="caption"></textarea>
+      </div>
+
+      <div>
+        <label for="religion">Religion</label>
+        <select name="religion" id="religion">
+          <option value="catholic">Catholic</option>
+          <option value="Buddist">Buddist</option>
+          <option value="Iglesia Ni Cristo">INC</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="favorite_foods">Favorite Foods</label>
+        <select name="favorite_foods" id="favorite_foods">
+          <optgroup label="Vegetable">
+            <option value="Ampalaya">Ampalaya</option>
+            <option value="Malungay">Malungay</option>
+            <option value="Santol">Santol</option>
+          </optgroup>
+          <optgroup label="Meat">
+            <option value="Chicken">Chicken</option>
+            <option value="Pork">Pork</option>
+            <option value="Beef">Beef</option>
+          </optgroup>
+          <optgroup label="Fruit">
+            <option value="Orange">Orange</option>
+            <option value="Apple">Apple</option>
+            <option value="Dragon Fruit">Dragon Fruit</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <fieldset>
+        <legend>Gender</legend>
+        <input type="radio" value="Male" name="gender" />
+        <label for="Male">Male</label>
+        <input type="radio" value="Female" name="gender" />
+        <label for="Female">Female</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bucket List</legend>
+
+        <input
+          type="checkbox"
+          id="calaguas_island"
+          value="Calaguas Island"
+          name="bucket_list"
+        />
+        <label for="calaguas_island">Calaguas Island</label>
+
+        <input
+          type="checkbox"
+          id="bagasbas"
+          value="Bagasbas Beach"
+          name="bucket_list"
+        />
+        <label for="bagasbas">Bagasbas Beach</label>
+
+        <input
+          type="checkbox"
+          id="mampili_river"
+          value="Mampili River"
+          name="bucket_list"
+        />
+        <label for="mampili_river">Mampili River</label>
+      </fieldset>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

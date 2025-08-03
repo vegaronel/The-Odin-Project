@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+:root {
+  --color-primary: #f8f8f8;
+  --color-accent: #d9a299;
+  --color-secondary: #f0e4d3;
+  --color-text: #4a4947;
+}
+
+* {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: "Rubik", sans-serif;
+}
+.semi-bold {
+  font-weight: 500;
+}
+body {
+  display: flex;
+  background-color: var(--color-secondary);
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  display: flex;
+}
+
+.card-picture {
+  height: 100%;
+  max-width: 35rem;
+}
+.card {
+  width: 100%;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--color-primary);
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+.text-content p {
+  margin: 0 0 1em 0;
+}
+
+.text-content {
+  margin: 0;
+  padding: 0;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+form {
+  margin: 0.6em 0;
+}
+
+.input-group {
+  display: flex;
+  gap: 3em;
+  margin-bottom: 1em;
+  max-width: 900px;
+}
+
+.form-footer {
+  margin: 1em 0;
+}
+.form-footer button {
+  margin-bottom: 0.5em;
+}
+button {
+  background-color: var(--color-accent);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 0.3em;
+  color: var(--color-primary);
+}
+label {
+  margin-bottom: 0.2em;
+  font-size: 0.8rem;
+}
+input {
+  border: 1px solid var(--color-text);
+  padding: 0.5em 0.8em;
+  width: 100%;
+}
+input:focus {
+  border: 1px solid #2196f3; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+}
+
+@media screen and (max-width: 900px) {
+  .card-picture {
+    display: none;
+  }
+}
