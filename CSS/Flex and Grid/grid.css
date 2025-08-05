@@ -1,0 +1,33 @@
+.container {
+  display: inline-grid;
+  grid-template: repeat(5, 100px) / repeat(5, 100px);
+  background: lightblue;
+}
+.room {
+  border: 1px solid black;
+  text-align: center;
+}
+#living-room {
+  grid-area: 1 / 1 / 3 / 6;
+}
+
+#kitchen {
+  grid-column: 4 / 6;
+  grid-row: 3 / 6;
+}
+
+#bedroom {
+  grid-column: 1 / 3;
+  grid-row: 3 / 5;
+}
+
+#closet {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+#bathroom {
+  grid-column: 3 / 4;
+  grid-row: 3/ 6;
+}
