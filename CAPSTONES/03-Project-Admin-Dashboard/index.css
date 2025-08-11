@@ -28,7 +28,7 @@ body {
 .container {
   display: grid;
   grid-template-columns: minmax(200px, 250px) 4fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 1fr;
   height: 100vh;
 }
 
@@ -160,6 +160,7 @@ button {
   grid-template-columns: 3fr 1fr;
   grid-template-rows: repeat(2, 1fr);
   gap: 1em;
+  overflow-x: scroll;
 }
 
 .content {
