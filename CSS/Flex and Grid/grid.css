@@ -2,32 +2,45 @@
   display: inline-grid;
   grid-template: repeat(5, 100px) / repeat(5, 100px);
   background: lightblue;
+  grid-template-areas:
+    "living-room living-room living-room living-room living-room"
+    "living-room living-room living-room living-room living-room"
+    "bedroom bedroom bathroom kitchen kitchen"
+    "bedroom bedroom bathroom kitchen kitchen"
+    "closet closet bathroom kitchen kitchen";
 }
 .room {
   border: 1px solid black;
   text-align: center;
 }
 #living-room {
-  grid-area: 1 / 1 / 3 / 6;
+  grid-area: living-room;
 }
 
 #kitchen {
-  grid-column: 4 / 6;
-  grid-row: 3 / 6;
+  grid-area: kitchen;
 }
 
 #bedroom {
-  grid-column: 1 / 3;
-  grid-row: 3 / 5;
+  grid-area: bedroom;
 }
 
 #closet {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-area: closet;
 }
 #bathroom {
-  grid-column: 3 / 4;
-  grid-row: 3/ 6;
+  grid-area: bathroom;
+}
+
+.box {
+  display: inline-grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+}
+
+.card {
+  background-color: bisque;
+}
+
+.first {
 }
