@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap");
+
+* {
+  font-family: "DynaPuff", system-ui;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eceae4;
+}
+input {
+  padding: 10px 15px;
+  border: none;
+  font-size: 1.4rem;
+}
+button {
+  padding: 1em 2em;
+}
+
+.action-container {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  display: none;
+  background-color: rgba(62, 62, 68, 0.486);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.action-card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.container {
+  position: relative;
+  padding: 1em;
+  height: 100vh;
+}
+.book-image {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+small {
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: #eceae4;
+  color: #5b7b57;
+}
+li {
+  list-style: none;
+}
+.read-card {
+  display: flex;
+  gap: 1em;
+}
+#book-list {
+  padding: 1em;
+  gap: 2em;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, min(250px));
+}
+#book-list div {
+  width: max-content;
+}
+.book-item p {
+  color: #5b7b57;
+  margin: 5px 0;
+}
+#showModal {
+  border: #5b7b57;
+  background-color: #6a8e66;
+  color: #e4e2cf;
+  cursor: pointer;
+  border-radius: 1em;
+}
