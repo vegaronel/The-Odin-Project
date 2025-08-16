@@ -18,6 +18,9 @@ function Books(id, title, img, finished) {
 
 function addBookToLibrary() {
   const readStatus = document.querySelector('input[name="finished"]:checked');
+  if (!title.value) {
+    return console.log("INPUT TITLE");
+  }
   const newBook = new Books(
     crypto.randomUUID(),
     title.value,
