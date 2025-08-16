@@ -4,7 +4,7 @@ const addButton = document.querySelector("#addButton");
 const showModal = document.getElementById("showModal");
 const newBookModal = document.querySelector(".action-container");
 const closeButton = document.getElementById("closeButton");
-
+const errorTitle = document.getElementById("error-title");
 const imageLink = document.getElementById("image-link");
 
 const myLibrary = [];
@@ -19,7 +19,7 @@ function Books(id, title, img, finished) {
 function addBookToLibrary() {
   const readStatus = document.querySelector('input[name="finished"]:checked');
   if (!title.value) {
-    return console.log("INPUT TITLE");
+    return (errorTitle.style.display = "block");
   }
   const newBook = new Books(
     crypto.randomUUID(),
@@ -31,7 +31,7 @@ function addBookToLibrary() {
   showBooks();
   title.value = "";
   imageLink.value = "";
-
+  errorTitle.style.display = "none";
   newBookModal.style.display = "none";
 }
 

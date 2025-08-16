@@ -79,3 +79,7 @@ li {
   cursor: pointer;
   border-radius: 1em;
 }
+
+#error-title {
+  display: none;
+}
