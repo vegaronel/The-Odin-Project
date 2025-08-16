@@ -28,6 +28,8 @@ function addBookToLibrary() {
   showBooks();
   title.value = "";
   imageLink.value = "";
+
+  newBookModal.style.display = "none";
 }
 
 function showBooks() {
