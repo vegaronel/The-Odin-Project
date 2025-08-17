@@ -10,9 +10,11 @@ body {
   background-color: #eceae4;
 }
 input {
-  padding: 10px 15px;
   border: none;
   font-size: 1.4rem;
+}
+input[type="text"] {
+  padding: 10px 15px;
 }
 button {
   padding: 1em 2em;
@@ -33,20 +35,21 @@ button {
   display: inline-flex;
   flex-direction: column;
   gap: 1em;
+  max-width: 400px;
+  min-width: 200px;
 }
 .container {
-  position: relative;
   padding: 1em;
+  position: relative;
+
   height: 100vh;
 }
 .book-image {
-  width: 250px;
-  height: 300px;
+  width: 100%;
+  height: 400px;
   object-fit: cover;
-  border-radius: 5px;
 }
 small {
-  border-radius: 20px;
   padding: 5px 10px;
   background-color: #6a8e66;
   color: #e4e2cf;
@@ -59,18 +62,20 @@ li {
   gap: 1em;
 }
 #book-list {
-  padding: 1em;
-  gap: 2em;
+  margin: 2em 0;
+  gap: 1em;
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fit, min(250px));
-}
-#book-list div {
-  width: max-content;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
 }
 .book-item p {
-  color: #5b7b57;
+  color: #232323c7;
   margin: 5px 0;
+}
+.book-item {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
 }
 #showModal {
   border: #5b7b57;
@@ -82,4 +87,21 @@ li {
 
 #error-title {
   display: none;
+}
+.image-label {
+  background-color: #6a8e66;
+  padding: 1em;
+  color: #e4e2cf;
+  transition: 0.3s;
+  cursor: pointer;
+  transition: 0.3;
+}
+.image-label:hover {
+  background: #5b7b57;
+}
+
+#fileChosen {
+  display: none;
+  max-width: 100%;
+  height: 400px;
 }
