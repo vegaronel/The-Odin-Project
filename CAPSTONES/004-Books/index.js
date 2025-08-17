@@ -9,7 +9,7 @@ const imageFile = document.getElementById("imageFile");
 const fileChosen = document.getElementById("fileChosen");
 const description = document.getElementById("description");
 
-const myLibrary = [
+let myLibrary = [
   {
     id: crypto.randomUUID(),
     title: "To Kill a Mockingbird",
@@ -35,7 +35,8 @@ function Books(id, title, img, finished, description) {
   this.description = description;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(event) {
+  event.preventDefault();
   const file = imageFile.files[0];
 
   const readStatus = document.querySelector('input[name="finished"]:checked');
@@ -65,27 +66,20 @@ function addBookToLibrary() {
 }
 
 function showBooks() {
+  let html = "";
   myLibrary.forEach((item) => {
-    const div = document.createElement("div");
-    const img = document.createElement("img");
-    const title = document.createElement("h2");
-    const isRead = document.createElement("small");
-    const description = document.createElement("p");
-    console.log(item);
-    div.classList.add("book-item");
-    img.classList.add("book-image");
-    isRead.textContent = "Status: " + item.finished;
-    img.src = item.img;
-    title.innerHTML = item.title;
-    description.textContent = item.description;
-    description.classList.add("description");
-
-    div.append(img);
-    div.append(title);
-    div.append(isRead);
-    div.append(description);
-    bookList.append(div);
+    html += `
+      <div class="book-item">
+          <img class="book-image" src="${item.img}" alt="${item.img}">
+          <h2>${item.title}</h2>
+          <small>Status: ${item.finished}</small>
+        <p class="description">${item.description}</p>
+        <button class="delete-item" data-id="${item.id}">Delete</button>
+      </div>
+    `;
   });
+
+  bookList.innerHTML = html;
 }
 
 showBooks();
@@ -105,3 +99,18 @@ imageFile.addEventListener("change", function () {
     fileChosen.src = URL.createObjectURL(currentImage);
   }
 });
+
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("delete-item")) {
+    const id = event.target.dataset.id;
+    deleteBook(id);
+  }
+});
+
+function deleteBook(id) {
+  const result = myLibrary.find((item) => item.id === id);
+  if (result !== -1) {
+    myLibrary.splice(result, 1);
+  }
+  showBooks();
+}
