@@ -8,6 +8,7 @@ const errorTitle = document.getElementById("error-title");
 const imageFile = document.getElementById("imageFile");
 const fileChosen = document.getElementById("fileChosen");
 const description = document.getElementById("description");
+const numberOfPages = document.getElementById("pages");
 
 let myLibrary = [
   {
@@ -17,6 +18,7 @@ let myLibrary = [
     finished: "Read",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    pages: 243,
   },
   {
     id: crypto.randomUUID(),
@@ -25,14 +27,16 @@ let myLibrary = [
     finished: "Not Read",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    pages: 243,
   },
 ];
-function Books(id, title, img, finished, description) {
+function Books(id, title, img, finished, description, pages) {
   this.id = id;
   this.title = title;
   this.img = img;
   this.finished = finished;
   this.description = description;
+  this.pages = pages;
 }
 
 function addBookToLibrary(event) {
@@ -53,7 +57,8 @@ function addBookToLibrary(event) {
       ? URL.createObjectURL(file)
       : "https://avatars.githubusercontent.com/u/4441966?s=280&v=4",
     readStatus.value,
-    description.value
+    description.value,
+    pages.value
   );
   myLibrary.push(newBook);
   showBooks();
@@ -63,16 +68,22 @@ function addBookToLibrary(event) {
   newBookModal.style.display = "none";
   fileChosen.style.display = "none";
   description.value = "";
+  numberOfPages.value = "";
 }
 
 function showBooks() {
   let html = "";
+
+  if (myLibrary.length === 0) {
+    return (bookList.innerHTML = `<h1 class="no-books">No books</h1>`);
+  }
   myLibrary.forEach((item) => {
     html += `
       <div class="book-item">
           <img class="book-image" src="${item.img}" alt="${item.img}">
           <h2>${item.title}</h2>
           <small>Status: ${item.finished}</small>
+          <p>Number of pages: ${item.pages}</p>
         <p class="description">${item.description}</p>
         <button class="delete-item" data-id="${item.id}">Delete</button>
       </div>
