@@ -1,176 +1,124 @@
 function gameBoard() {
-  let board = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
-  ];
+  let board = ["", "", "", "", "", "", "", "", ""];
+
   const getBoard = () => board;
 
-  const putMark = (column, row, player) => {
-    if (board[column][row] === 0) {
-      board[column][row] = player;
+  const reset = () => {
+    board = ["", "", "", "", "", "", "", "", ""];
+  };
+
+  const addMark = (player, column) => {
+    if (board[column] !== "") {
+      return true;
     } else {
-      console.log("HEY ITS OCCUPIED");
+      board[column] = player;
     }
   };
 
-  const resetGame = () =>
-    (board = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]);
-
-  return { getBoard, putMark, resetGame };
+  return { getBoard, addMark, reset };
 }
 
-function gameController() {
-  const winningPatterns = [
-    [
-      [0, 0],
-      [0, 1],
-      [0, 2],
-    ],
-    [
-      [1, 0],
-      [1, 1],
-      [1, 2],
-    ],
-    [
-      [2, 0],
-      [2, 1],
-      [2, 2],
-    ],
-    // columns
-    [
-      [0, 0],
-      [1, 0],
-      [2, 0],
-    ],
-    [
-      [0, 1],
-      [1, 1],
-      [2, 1],
-    ],
-    [
-      [0, 2],
-      [1, 2],
-      [2, 2],
-    ],
-    // diagonals
-    [
-      [0, 0],
-      [1, 1],
-      [2, 2],
-    ],
-    [
-      [0, 2],
-      [1, 1],
-      [2, 0],
-    ],
-  ];
-
-  const player = [
+const startGame = (function () {
+  let players = [
     {
-      name: "Player 1",
+      name: "Ronel",
       marker: "X",
     },
     {
-      name: "Player 2",
+      name: "BIBO",
       marker: "O",
     },
   ];
 
-  let currentPlayer = player[0];
-
+  let currentPlayer = players[0];
   const game = gameBoard();
 
-  const selectCell = (col, row) => {
-    if (isGameOver) return; // stop if game ended
-    game.putMark(col, row, currentPlayer.marker);
-    if (checkPattern(game.getBoard(), currentPlayer.marker)) {
-      const win = document.getElementById("result");
-      win.innerHTML = `<h1>${currentPlayer.name} WINS</h1>`;
-      isGameOver = true;
-      showResetButton();
+  function checkWinner(board) {
+    const winPatterns = [
+      // Rows
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      // Columns
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      // Diagonals
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let pattern of winPatterns) {
+      let pos1Val = board[pattern[0]];
+      let pos2Val = board[pattern[1]];
+      let pos3Val = board[pattern[2]];
+
+      if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
+        players.includes(pos1Val);
+        return pos1Val;
+      }
+    }
+    console.log("NO WIN");
+    return null; // No winner yet
+  }
+
+  const checkPlayer = () => {
+    if (currentPlayer === players[1]) {
+      currentPlayer = players[0];
+    } else {
+      currentPlayer = players[1];
+    }
+  };
+
+  const getCurrentPlayer = () => currentPlayer.marker;
+  const playGame = (column) => {
+    const isOccupied = game.addMark(currentPlayer.marker, column);
+    if (isOccupied) {
       return;
     }
-
     checkPlayer();
+    const hasWinnning = checkWinner(game.getBoard());
+    return hasWinnning;
   };
 
-  const removeResetButton = () => {
-    const btn = document.getElementById("reset-btn");
-    if (btn) btn.remove();
+  return {
+    playGame,
+    getBoard: game.getBoard,
+    reset: game.reset,
+    getCurrentPlayer,
   };
+})();
 
-  const reset = () => {
-    game.resetGame();
-    currentPlayer = player[0];
-    isGameOver = false;
-    document.getElementById("result").innerHTML = "";
-    renderBoard(game.getBoard());
-    removeResetButton();
-  };
+function renderBoard() {
+  const board = document.getElementById("board");
+  const winner = document.getElementById("winner");
 
-  const showResetButton = () => {
-    let btn = document.getElementById("reset-btn");
-    if (!btn) {
-      btn = document.createElement("button");
-      btn.id = "reset-btn";
-      btn.textContent = "Reset";
-      btn.addEventListener("click", reset);
-      document.body.appendChild(btn);
-    }
-  };
-  const checkPlayer = () => {
-    if (currentPlayer === player[0]) {
-      currentPlayer = player[1];
-    } else {
-      currentPlayer = player[0];
-    }
-  };
-
-  const checkPattern = (board, player) => {
-    for (let pattern of winningPatterns) {
-      const values = pattern.map(([row, col]) => board[row][col]);
-
-      if (values.every((cell) => cell === player)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  return { selectCell, board: game.getBoard() };
+  if (winner) {
+    winner.textContent = "";
+  }
+  let html = "";
+  for (let i = 0; i < 9; i++) {
+    html += `<button id="btn-${i}" onclick="addMark(${i})"></button>`;
+  }
+  board.innerHTML = html;
 }
-let isGameOver = false;
 
-function renderBoard(board) {
-  const container = document.getElementById("board");
-  container.innerHTML = "";
-  let buttonId = 0;
-  board.forEach((row, rowIndex) => {
-    row.forEach((cell, colIndex) => {
-      const div = document.createElement("div");
-      div.classList.add("cell");
-      div.id = `btn-${buttonId}`;
-      buttonId++;
-      div.textContent = cell === 0 ? "" : cell;
-
-      if (!isGameOver) {
-        div.addEventListener("click", () => {
-          play.selectCell(rowIndex, colIndex); // use your controller
-          renderBoard(play.board); // re-render updated board
-        });
-      } else {
-        div.disabled = true; // disable after win
-      }
-      container.appendChild(div);
+function addMark(column) {
+  const btn = document.getElementById(`btn-${column}`);
+  const board = document.getElementById("board");
+  let html = "";
+  btn.textContent = startGame.getCurrentPlayer();
+  const result = startGame.playGame(column);
+  if (result) {
+    const winner = document.getElementById("winner");
+    const buttons = document.querySelectorAll(`button[id*="btn-"]`);
+    buttons.forEach((button) => {
+      button.disabled = true;
     });
-  });
+    winner.textContent = `Winner is ${result}`;
+    html += `<button class="reset" onclick="renderBoard()">Reset</button>`;
+    document.body.innerHTML += html;
+    startGame.reset();
+    startGame;
+  }
 }
-
-const play = gameController();
-
-renderBoard(play.board);
+renderBoard();

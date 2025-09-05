@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&family=DynaPuff:wght@400..700&display=swap");
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  gap: 5px;
+}
+.title {
+  font-size: 5rem;
+  padding: 10px;
+  color: #064232;
+}
+
+#winner {
+  color: #568f87;
+  font-size: 3rem;
+}
+* {
+  font-family: "DynaPuff", system-ui;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #fff5f2;
+  gap: 1em;
+}
+.reset {
+  border: none;
+  background-color: #568f87;
+  color: #fff5f2;
+  font-size: 2rem;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+button {
+  cursor: pointer;
+  border: none;
+}
+.board button {
+  background-color: #f5babb;
+  font-size: 3rem;
+}
+.board button:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: #f5babb;
+}
+
+@keyframes example {
+  0% {
+    background-color: #f38181;
+  }
+  25% {
+    background-color: #fce38a;
+  }
+  50% {
+    background-color: #eaffd0;
+  }
+  100% {
+    background-color: #95e1d3;
+  }
+}
