@@ -68,7 +68,7 @@ const startGame = (function () {
       currentPlayer = players[1];
     }
   };
-
+  const resetPlayer = () => (currentPlayer = players[0]);
   const getCurrentPlayer = () => currentPlayer.marker;
   const playGame = (column) => {
     const isOccupied = game.addMark(currentPlayer.marker, column);
@@ -85,6 +85,7 @@ const startGame = (function () {
     getBoard: game.getBoard,
     reset: game.reset,
     getCurrentPlayer,
+    resetPlayer,
   };
 })();
 
@@ -104,8 +105,6 @@ function renderBoard() {
 
 function addMark(column) {
   const btn = document.getElementById(`btn-${column}`);
-  const board = document.getElementById("board");
-  let html = "";
   btn.textContent = startGame.getCurrentPlayer();
   const result = startGame.playGame(column);
   if (result) {
@@ -115,9 +114,8 @@ function addMark(column) {
       button.disabled = true;
     });
     winner.textContent = `Winner is ${result}`;
-    html += `<button class="reset" onclick="renderBoard()">Reset</button>`;
-    document.body.innerHTML += html;
     startGame.reset();
+    startGame.resetPlayer();
     startGame;
   }
 }
