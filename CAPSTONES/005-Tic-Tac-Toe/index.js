@@ -51,7 +51,6 @@ const startGame = (function () {
       let pos1Val = board[pattern[0]];
       let pos2Val = board[pattern[1]];
       let pos3Val = board[pattern[2]];
-
       if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
         players.includes(pos1Val);
         return pos1Val;
@@ -116,7 +115,9 @@ function addMark(column) {
     buttons.forEach((button) => {
       button.disabled = true;
     });
-    winner.textContent = `Winner is ${result}`;
+    winner.textContent = `Winner is ${
+      result === "O" ? "Player 2" : "Player 1"
+    }`;
     resetGame();
   }
 }

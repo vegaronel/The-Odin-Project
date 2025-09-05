@@ -8,6 +8,7 @@
 }
 .title {
   font-size: 5rem;
+
   padding: 10px;
   color: #064232;
 }
@@ -17,6 +18,7 @@
   font-size: 3rem;
 }
 * {
+  text-align: center;
   font-family: "DynaPuff", system-ui;
   margin: 0;
   padding: 0;
@@ -46,21 +48,6 @@ button {
   font-size: 3rem;
 }
 .board button:hover {
-  transition: all 0.5s ease-in-out;
-  background-color: #f5babb;
-}
-
-@keyframes example {
-  0% {
-    background-color: #f38181;
-  }
-  25% {
-    background-color: #fce38a;
-  }
-  50% {
-    background-color: #eaffd0;
-  }
-  100% {
-    background-color: #95e1d3;
-  }
+  transition: all 0.2s ease-in-out;
+  background-color: #f38181;
 }
