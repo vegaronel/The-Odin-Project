@@ -1,3 +1,36 @@
+const startButton = document.getElementById("start");
+const firstPlayerInput = document.getElementById("playerOne");
+const secondPlayerInput = document.getElementById("playerTwo");
+const startContainer = document.getElementById("startContainer");
+startContainer.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  if (firstPlayerInput.value === "" || secondPlayerInput.value === "") {
+    console.log("PLEASE ADD A NAME");
+    return;
+  } else {
+    console.log("ok");
+    players[0].name = firstPlayerInput.value;
+    players[1].name = secondPlayerInput.value;
+    startContainer.style.animationName = "example";
+    startContainer.style.animationDuration = "1s";
+    setTimeout(() => {
+      startContainer.style.display = "none";
+    }, 1000);
+  }
+});
+
+let players = [
+  {
+    name: "Player One",
+    marker: "X",
+  },
+  {
+    name: "Player Two",
+    marker: "O",
+  },
+];
+
 function gameBoard() {
   let board = ["", "", "", "", "", "", "", "", ""];
 
@@ -20,17 +53,6 @@ function gameBoard() {
 }
 
 const startGame = (function () {
-  let players = [
-    {
-      name: "Ronel",
-      marker: "X",
-    },
-    {
-      name: "Mika",
-      marker: "O",
-    },
-  ];
-
   let currentPlayer = players[0];
   const game = gameBoard();
 
@@ -126,7 +148,9 @@ function addMarkNewMark(column) {
     buttons.forEach((button) => {
       button.disabled = true;
     });
-    winner.textContent = `Winner is ${result === "O" ? "Mika" : "Ronel"}`;
+    winner.textContent = `Winner is ${
+      result === players[0].marker ? players[0].name : players[1].name
+    }`;
     resetGame();
   }
 }
