@@ -57,8 +57,11 @@ const startGame = (function () {
         return pos1Val;
       }
     }
-    console.log("NO WIN");
-    return null; // No winner yet
+    if (game.getBoard().every((item) => item !== "")) {
+      const winner = document.getElementById("winner");
+      winner.textContent = "DRAW";
+      resetGame();
+    }
   }
 
   const checkPlayer = () => {
@@ -114,9 +117,13 @@ function addMark(column) {
       button.disabled = true;
     });
     winner.textContent = `Winner is ${result}`;
-    startGame.reset();
-    startGame.resetPlayer();
-    startGame;
+    resetGame();
   }
+}
+
+function resetGame() {
+  startGame.reset();
+  startGame.resetPlayer();
+  startGame;
 }
 renderBoard();
