@@ -76,7 +76,17 @@ const startGame = (function () {
       let pos3Val = board[pattern[2]];
       if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
         players.includes(pos1Val);
-        return pos1Val;
+
+        pattern.forEach((button) => {
+          const btn = document.getElementById(`btn-${button}`);
+          Object.assign(btn.style, {
+            backgroundColor: "#568f87",
+            color: "white",
+            padding: "10px",
+          });
+        });
+
+        return { pos1Val };
       }
     }
     if (game.getBoard().every((item) => item !== "")) {
@@ -85,7 +95,6 @@ const startGame = (function () {
       resetGame();
     }
   }
-
   const checkPlayer = () => {
     if (currentPlayer === players[1]) {
       currentPlayer = players[0];
@@ -94,15 +103,17 @@ const startGame = (function () {
     }
   };
   const resetPlayer = () => (currentPlayer = players[0]);
+
   const getLastPlayer = () => currentPlayer.name;
+
   const getCurrentPlayer = () =>
     currentPlayer === players[0] ? players[1] : players[0];
+
   const playGame = (column) => {
     const isOccupied = game.addMark(currentPlayer.marker, column);
     if (isOccupied) return { isOccupied };
     checkPlayer();
     const hasWinnning = checkWinner(game.getBoard());
-
     return { hasWinnning };
   };
 
@@ -143,6 +154,7 @@ function addMarkNewMark(column) {
   playerTurn.textContent = startGame.getLastPlayer() + "'s turn";
   btn.textContent = startGame.getCurrentPlayer().marker;
   if (result.hasWinnning) {
+    console.log(result.pattern);
     const winner = document.getElementById("winner");
     const buttons = document.querySelectorAll(`button[id*="btn-"]`);
     buttons.forEach((button) => {
