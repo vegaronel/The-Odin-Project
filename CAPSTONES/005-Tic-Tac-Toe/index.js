@@ -12,6 +12,7 @@ function gameBoard() {
       return true;
     } else {
       board[column] = player;
+      console.log(board);
     }
   };
 
@@ -25,7 +26,7 @@ const startGame = (function () {
       marker: "X",
     },
     {
-      name: "BIBO",
+      name: "Mika",
       marker: "O",
     },
   ];
@@ -71,7 +72,9 @@ const startGame = (function () {
     }
   };
   const resetPlayer = () => (currentPlayer = players[0]);
-  const getCurrentPlayer = () => currentPlayer.marker;
+  const getLastPlayer = () => currentPlayer.name;
+  const getCurrentPlayer = () =>
+    currentPlayer === players[0] ? players[1] : players[0];
   const playGame = (column) => {
     const isOccupied = game.addMark(currentPlayer.marker, column);
     if (isOccupied) return { isOccupied };
@@ -87,6 +90,7 @@ const startGame = (function () {
     reset: game.reset,
     getCurrentPlayer,
     resetPlayer,
+    getLastPlayer,
   };
 })();
 
@@ -106,6 +110,7 @@ function renderBoard() {
 
 function addMarkNewMark(column) {
   const btn = document.getElementById(`btn-${column}`);
+  const playerTurn = document.getElementById("playerTurn");
 
   const result = startGame.playGame(column);
 
@@ -113,22 +118,21 @@ function addMarkNewMark(column) {
     console.log("OCCUPIED");
     return;
   }
-
-  btn.textContent = startGame.getCurrentPlayer();
+  playerTurn.textContent = startGame.getLastPlayer() + "'s turn";
+  btn.textContent = startGame.getCurrentPlayer().marker;
   if (result.hasWinnning) {
     const winner = document.getElementById("winner");
     const buttons = document.querySelectorAll(`button[id*="btn-"]`);
     buttons.forEach((button) => {
       button.disabled = true;
     });
-    winner.textContent = `Winner is ${
-      result === "O" ? "Player 2" : "Player 1"
-    }`;
+    winner.textContent = `Winner is ${result === "O" ? "Mika" : "Ronel"}`;
     resetGame();
   }
 }
 
 function resetGame() {
+  playerTurn.textContent = "";
   startGame.reset();
   startGame.resetPlayer();
   startGame;
