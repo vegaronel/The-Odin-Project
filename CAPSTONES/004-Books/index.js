@@ -30,13 +30,15 @@ let myLibrary = [
     pages: 243,
   },
 ];
-function Books(id, title, img, finished, description, pages) {
-  this.id = id;
-  this.title = title;
-  this.img = img;
-  this.finished = finished;
-  this.description = description;
-  this.pages = pages;
+class Books {
+  constructor(id, title, img, finished, description, pages) {
+    this.id = id;
+    this.title = title;
+    this.img = img;
+    this.finished = finished;
+    this.description = description;
+    this.pages = pages;
+  }
 }
 
 function addBookToLibrary(event) {
